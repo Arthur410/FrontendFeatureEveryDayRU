@@ -202,7 +202,9 @@ type MethodType = ThisType<Foo["method"]>;
 ### Управление регистром
 _**Uppercase<StringType>, Lowercase<StringType>, Capitalize<StringType>, Uncapitalize<StringType>**_ - это утилитные типы для манипуляции строками, которые изменяют регистр строки в соответствии с их именем.
 
+```ts
 type Uppercased = Uppercase<'hello'>; // 'HELLO'
 type Lowercased = Lowercase<'Hello'>; // 'hello'
 type Capitalized = Capitalize<'hello'>; // 'Hello'
 type Uncapitalized = Uncapitalize<'Hello'>; // 'hello'
+```
