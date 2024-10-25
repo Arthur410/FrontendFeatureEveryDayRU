@@ -14,10 +14,15 @@
 ```ts
 function debounce(func, delay) {
   let timeout;
-  return function(...args) {
-    clearTimeout(timeout);
-    timeout = setTimeout(() => func.apply(this, args), delay);
-  };
+  
+  return (...args) => {
+    if (timeout) 
+      clearTimeout(timeout)
+    
+    timeout = setTimeout(() => {
+      func(...args)
+    }, delay)
+  }
 }
 
 // Использование debounce
@@ -33,13 +38,15 @@ document.getElementById("searchInput").addEventListener("input", handleInput);
 ```ts
 function throttle(func, interval) {
   let lastCall = 0;
-  return function(...args) {
-    const now = Date.now();
-    if (now - lastCall >= interval) {
-      lastCall = now;
-      func.apply(this, args);
+  
+  return (...args) => {
+    const currentCall = Date.now();
+    
+    if (currentCall - lastCall >= interval) {
+      func(...args)
+      lastCall = currentCall;
     }
-  };
+  }
 }
 
 // Использование throttle
